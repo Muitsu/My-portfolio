@@ -52,6 +52,7 @@ class ContactMobile extends StatelessWidget {
                   height: 1.5,
                   wordSpacing: 4,
                 ),
+                textAlign: TextAlign.justify,
                 "What I like about coding is the ability to create cool stuff with just a laptop and internet connection. It is like having a magic. With great power, comes great responsibility. Hence, I wanted to build software that will give positive impact for people.",
               ),
               SizedBox(height: titleSpace),
@@ -63,6 +64,7 @@ class ContactMobile extends StatelessWidget {
                   height: 1.5,
                   wordSpacing: 4,
                 ),
+                textAlign: TextAlign.justify,
                 "My work experience focuses on frontend develoment. I love to develop beautiful UI's, make interactive & responsive apps to have a good impression on user experience.",
               ),
               SizedBox(height: titleSpace),
@@ -74,6 +76,7 @@ class ContactMobile extends StatelessWidget {
                   height: 1.5,
                   wordSpacing: 4,
                 ),
+                textAlign: TextAlign.justify,
                 "I'm familiar with Flutter mobile app development, BLoC, Provider state management and app notification.",
               ),
               SizedBox(height: titleSpace),
@@ -85,15 +88,54 @@ class ContactMobile extends StatelessWidget {
                   height: 1.5,
                   wordSpacing: 4,
                 ),
+                textAlign: TextAlign.justify,
                 "I'm also had a little experience with backend development using Java Springboot, along with databases such as MySQL and Firebase.",
               ),
               const SizedBox(height: 60),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              Column(
+                // crossAxisAlignment: CrossAxisAlignment.start,
+                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   SizedBox(
-                    width: size.width * 0.3,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        MiniTitle(text: AboutMe.about.miniTitle),
+                        SizedBox(height: titleSpace),
+                        TextTitle(text: AboutMe.about.title),
+                        SizedBox(height: descSpace),
+                        Text(
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            letterSpacing: 1,
+                            height: 1.5,
+                            wordSpacing: 4,
+                          ),
+                          AboutMe.about.desc,
+                          textAlign: TextAlign.justify,
+                        ),
+                        const SizedBox(height: 20),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            LabelAboutMe(
+                              title: '${DateTime.now().year - 2021}',
+                              sub1: 'Years',
+                              sub2: ' Experience',
+                            ),
+                            const LabelAboutMe(
+                              title: '4',
+                              sub1: 'Project',
+                              sub2: 'Involves',
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(height: descSpace + 30),
+                  SizedBox(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -122,49 +164,12 @@ class ContactMobile extends StatelessWidget {
                                     ..onTap = () {
                                       HtmlService.copyToClipboard(
                                           text: 'ahmadmuizzuddin13@gmail.com');
-                                      CustomNotification.copyClipboard(context);
+                                      CustomNotification.copyClipboard(context,
+                                          maxWidth: 300);
                                     }),
                               const TextSpan(
                                   text: " and I'll get back to you."),
                             ]))
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    width: size.width * 0.3,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        MiniTitle(text: AboutMe.about.miniTitle),
-                        SizedBox(height: titleSpace),
-                        TextTitle(text: AboutMe.about.title),
-                        SizedBox(height: descSpace),
-                        Text(
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                            letterSpacing: 1,
-                            height: 1.5,
-                            wordSpacing: 4,
-                          ),
-                          AboutMe.about.desc,
-                        ),
-                        const SizedBox(height: 20),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            LabelAboutMe(
-                              title: '${DateTime.now().year - 2021}',
-                              sub1: 'Years',
-                              sub2: ' Experience',
-                            ),
-                            const LabelAboutMe(
-                              title: '4',
-                              sub1: 'Project',
-                              sub2: 'Involves',
-                            ),
-                          ],
-                        ),
                       ],
                     ),
                   ),
@@ -177,7 +182,7 @@ class ContactMobile extends StatelessWidget {
             bottom: -120,
             child: Container(
               padding: const EdgeInsets.symmetric(vertical: 30),
-              width: size.width * .75,
+              width: size.width * .9,
               color: AssetsColor.lyeLight,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -189,7 +194,7 @@ class ContactMobile extends StatelessWidget {
                   ),
                   const SizedBox(height: 20),
                   SizedBox(
-                    height: 80,
+                    height: 30,
                     child: Center(
                       child: ListView.builder(
                           shrinkWrap: true,
@@ -198,7 +203,7 @@ class ContactMobile extends StatelessWidget {
                           itemBuilder: (context, index) {
                             return Padding(
                               padding:
-                                  const EdgeInsets.symmetric(horizontal: 30),
+                                  const EdgeInsets.symmetric(horizontal: 14),
                               child: PlatformAwareAssetImage(
                                   asset: TechStack.values[index].img),
                             );

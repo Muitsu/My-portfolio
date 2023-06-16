@@ -2,7 +2,7 @@ import 'package:my_portfolio/constant/assets_img.dart';
 
 const double desktopHorizontalPadding = 180;
 const double tabletHorizontalPadding = 120;
-const double mobileHorizontalPadding = 60;
+const double mobileHorizontalPadding = 20;
 
 enum MyName {
   fullName(name: 'AHMAD MUIZZUDDIN BIN SHAHREL'),
@@ -80,4 +80,10 @@ enum LottiefileAsset {
 
   final String url;
   const LottiefileAsset({required this.url});
+}
+
+enum MyProject {
+  ksp,
+  enf,
+  sps;
 }

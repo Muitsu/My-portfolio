@@ -55,7 +55,7 @@ class MobileIntro extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: size.height * 0.8,
+              height: size.height * 0.7,
               // width: size.width * 0.8,
               child: Stack(
                 clipBehavior: Clip.none,

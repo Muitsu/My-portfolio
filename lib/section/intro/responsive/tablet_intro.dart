@@ -40,7 +40,7 @@ class TabletIntro extends StatelessWidget {
                       ),
                     )),
                 Positioned(
-                  top: 220,
+                  top: 260,
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -49,7 +49,7 @@ class TabletIntro extends StatelessWidget {
                         MyName.nameWhitespace.name,
                         style: const TextStyle(
                             letterSpacing: 6,
-                            fontSize: 40,
+                            fontSize: 30,
                             fontWeight: FontWeight.w600,
                             color: Colors.white),
                       ),

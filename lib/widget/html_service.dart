@@ -9,6 +9,11 @@ class HtmlService {
     anchorElement.click();
   }
 
+  static Future<void> openWindow(
+      {required String url, required String label}) async {
+    html.window.open(url, label);
+  }
+
   static Future<void> copyToClipboard({required String text}) async {
     Clipboard.setData(ClipboardData(text: text));
   }

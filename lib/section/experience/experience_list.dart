@@ -6,11 +6,15 @@ class ExperienceJob extends StatefulWidget {
   final String duration;
   final String companyName;
   final void Function()? onTap;
+  final double fontSizeDuration;
+  final double fontSizeCompName;
   const ExperienceJob({
     super.key,
     required this.duration,
     required this.companyName,
     this.onTap,
+    this.fontSizeDuration = 22,
+    this.fontSizeCompName = 24,
   });
 
   @override
@@ -35,13 +39,16 @@ class _ExperienceJobState extends State<ExperienceJob> {
                 TableCell(
                   child: Text(
                     widget.duration,
-                    style: const TextStyle(color: Colors.white54, fontSize: 22),
+                    style: TextStyle(
+                        color: Colors.white54,
+                        fontSize: widget.fontSizeDuration),
                   ),
                 ),
                 TableCell(
                   child: Text(
                     widget.companyName,
-                    style: const TextStyle(color: Colors.white, fontSize: 24),
+                    style: TextStyle(
+                        color: Colors.white, fontSize: widget.fontSizeCompName),
                   ),
                 ),
                 const TableCell(

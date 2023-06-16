@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 
 class CustomNotification {
   static copyClipboard(BuildContext context,
-      {String msg = 'Copy to clipboard'}) {
+      {String msg = 'Copy to clipboard', double? maxWidth}) {
     return Flushbar(
       message: msg,
-      maxWidth: MediaQuery.of(context).size.width * 0.3,
+      maxWidth: maxWidth ?? MediaQuery.of(context).size.width * 0.3,
       backgroundColor: Colors.black,
       icon: const Icon(
         Icons.copy_outlined,
