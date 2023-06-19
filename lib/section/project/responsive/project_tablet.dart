@@ -4,7 +4,9 @@ import 'package:my_portfolio/widget/html_service.dart';
 import '../../../constant/assets_color.dart';
 import '../../../constant/portfolio_constants.dart';
 import '../../../widget/mini_title.dart';
+import '../../../widget/platform_image.dart';
 import '../../../widget/text_title.dart';
+import '../project_btn.dart';
 
 class ProjectTablet extends StatefulWidget {
   const ProjectTablet({super.key});
@@ -45,38 +47,28 @@ class _ProjectTabletState extends State<ProjectTablet> {
                           url: 'https://github.com/Muitsu?tab=repositories',
                           label: 'github');
                     },
-                    child: const Text('See More'),
+                    child: const Text(
+                      'My other project',
+                      style: TextStyle(
+                          fontSize: 20, color: AssetsColor.whiteMatte),
+                    ),
                   );
                 }
                 return ProjectButton(
                   onTap: () {},
+                  child: AspectRatio(
+                    aspectRatio: 3 / 2,
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(15),
+                      child: PlatformAwareAssetImage(
+                        asset: project[index].img,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
                 );
               }),
         ],
-      ),
-    );
-  }
-}
-
-class ProjectButton extends StatelessWidget {
-  final void Function()? onTap;
-  final Widget? child;
-  const ProjectButton({
-    super.key,
-    this.onTap,
-    this.child,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Container(
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-            color: AssetsColor.lyeLight,
-            borderRadius: BorderRadius.circular(15)),
-        child: child,
       ),
     );
   }

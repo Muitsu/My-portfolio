@@ -83,7 +83,12 @@ enum LottiefileAsset {
 }
 
 enum MyProject {
-  ksp,
-  enf,
-  sps;
+  ksp(name: 'Kulim Smart Parking', img: AssetsImg.ksp),
+  enf(name: 'Kulim Esnforcement', img: AssetsImg.enf),
+  sps(name: 'Smart Parking Solution', img: AssetsImg.sps),
+  ;
+
+  final String name;
+  final String img;
+  const MyProject({required this.name, required this.img});
 }

@@ -5,4 +5,7 @@ class AssetsImg {
   static const String html = 'assets/img/html.png';
   static const String js = 'assets/img/js.png';
   static const String figma = 'assets/img/figma.png';
+  static const String enf = 'assets/project/enf.png';
+  static const String sps = 'assets/project/sps.png';
+  static const String ksp = 'assets/project/ksp.png';
 }
