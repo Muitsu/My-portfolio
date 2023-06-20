@@ -33,6 +33,7 @@ class _ProjectMobileState extends State<ProjectMobile> {
           const SizedBox(height: 20),
           GridView.builder(
               shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 1,
                   childAspectRatio: 3 / 2,

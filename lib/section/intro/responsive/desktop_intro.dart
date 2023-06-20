@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../constant/assets_color.dart';
 import '../../../constant/assets_img.dart';
 import '../../../constant/portfolio_constants.dart';
+import '../../../widget/html_service.dart';
 import '../../../widget/platform_image.dart';
 import '../../../widget/text_title.dart';
 import '../thankyou_dialog.dart';
@@ -115,10 +116,10 @@ class DesktopIntro extends StatelessWidget {
                 SizedBox(height: size.height * 0.04),
                 ElevatedButton(
                     onPressed: () {
-                      //  HtmlService.download(
-                      //   url: DownloadUrl.resume.url,
-                      //   title: DownloadUrl.resume.name,
-                      // );
+                      HtmlService.download(
+                        url: DownloadUrl.resume.url,
+                        title: DownloadUrl.resume.name,
+                      );
                       showDialog(
                           context: context,
                           builder: (context) => const ThankYouDialog());

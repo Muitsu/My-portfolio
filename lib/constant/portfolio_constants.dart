@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:my_portfolio/constant/assets_img.dart';
 
 const double desktopHorizontalPadding = 180;
@@ -42,12 +43,37 @@ enum AboutMe {
 }
 
 enum ExperienceList {
-  heitech(name: 'Heitech Padu Berhad', duration: '2021 - Present'),
-  esra(name: 'Esra Technology', duration: '2019 - 2021');
+  heitech(
+      name: 'Heitech Padu Berhad',
+      duration: '2021 - Present',
+      jobPesignation: 'Software Developer',
+      yearsWork: '2',
+      responsibility:
+          'As a mobile developer, it is your responsibility to design, develop, and maintain innovative and user-friendly mobile applications that meet the needs and expectations of the users while adhering to industry best practices and standards.',
+      techStack: 'Flutter, Figma, Framer, Photoshop, Rest API, Firebase'),
+  esra(
+      name: 'Esra Technology',
+      duration: '2019 - 2021',
+      jobPesignation: 'Software Developer (Internship)',
+      yearsWork: '0.5',
+      responsibility:
+          'Responsible for assisting the developer team to develop the system according to the Technical diagram and user requirement. Responsible to fix defect for System testing. ',
+      techStack: 'PHP, HTML, CSS, MySQl, Orcale, JavaScript, JQuery');
 
   final String name;
   final String duration;
-  const ExperienceList({required this.name, required this.duration});
+  final String jobPesignation;
+  final String yearsWork;
+  final String responsibility;
+  final String techStack;
+
+  const ExperienceList(
+      {required this.name,
+      required this.duration,
+      required this.jobPesignation,
+      required this.yearsWork,
+      required this.responsibility,
+      required this.techStack});
 }
 
 enum DownloadUrl {
@@ -91,4 +117,14 @@ enum MyProject {
   final String name;
   final String img;
   const MyProject({required this.name, required this.img});
+}
+
+responsiveSize(BuildContext context,
+    {required double max, required double mid, required double min}) {
+  Size size = MediaQuery.of(context).size;
+  return size.width < 850
+      ? min
+      : (size.width < 1150 && size.width >= 850)
+          ? mid
+          : max;
 }

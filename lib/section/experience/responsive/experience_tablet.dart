@@ -5,6 +5,7 @@ import '../../../constant/portfolio_constants.dart';
 import '../../../widget/mini_title.dart';
 import '../../../widget/text_title.dart';
 import '../experience_list.dart';
+import '../experience_pop.dart';
 
 class ExperienceTablet extends StatefulWidget {
   const ExperienceTablet({super.key});
@@ -70,79 +71,20 @@ class _ExperienceTabletState extends State<ExperienceTablet> {
                               fontSizeCompName: 20,
                               onTap: () {
                                 showDialog(
-                                    context: context,
-                                    builder: (_) => const AlertDialog(
-                                          insetPadding: EdgeInsets.symmetric(
-                                              horizontal: 300),
-                                          content: Column(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              Center(
-                                                child: Text(
-                                                  'Experience working at',
-                                                  style: TextStyle(
-                                                      fontSize: 20,
-                                                      fontWeight:
-                                                          FontWeight.w300),
-                                                ),
-                                              ),
-                                              Center(
-                                                  child: Text(
-                                                'Heitech Padu Berhad',
-                                                style: TextStyle(
-                                                    fontSize: 24,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              )),
-                                              Divider(),
-                                              SizedBox(height: 20),
-                                              Row(
-                                                children: [
-                                                  Text(
-                                                    'Job Designations: ',
-                                                    style:
-                                                        TextStyle(fontSize: 18),
-                                                  ),
-                                                  Text(
-                                                    'Software Developer',
-                                                    style:
-                                                        TextStyle(fontSize: 18),
-                                                  ),
-                                                ],
-                                              ),
-                                              SizedBox(height: 15),
-                                              Row(
-                                                children: [
-                                                  Text(
-                                                    'Duration of Work: ',
-                                                    style:
-                                                        TextStyle(fontSize: 18),
-                                                  ),
-                                                  Text(
-                                                    '2 Years',
-                                                    style:
-                                                        TextStyle(fontSize: 18),
-                                                  ),
-                                                ],
-                                              ),
-                                              SizedBox(height: 15),
-                                              Text(
-                                                'Responsibility',
-                                                style: TextStyle(fontSize: 18),
-                                              ),
-                                              SizedBox(height: 8),
-                                              Text(
-                                                'As a mobile developer, it is your responsibility to design, develop, and maintain innovative and user-friendly mobile applications that meet the needs and expectations of the users while adhering to industry best practices and standards.',
-                                                style: TextStyle(fontSize: 18),
-                                              ),
-                                              SizedBox(height: 15),
-                                            ],
-                                          ),
-                                        ));
+                                  context: context,
+                                  builder: (_) => ExperiencePopUp(
+                                    companyName:
+                                        ExperienceList.values[index].name,
+                                    jobPesignation: ExperienceList
+                                        .values[index].jobPesignation,
+                                    yearsWork:
+                                        ExperienceList.values[index].yearsWork,
+                                    responsibility: ExperienceList
+                                        .values[index].responsibility,
+                                    techStack:
+                                        ExperienceList.values[index].techStack,
+                                  ),
+                                );
                               },
                               duration: ExperienceList.values[index].duration,
                               companyName: ExperienceList.values[index].name))),

@@ -33,6 +33,7 @@ class _ProjectDesktopState extends State<ProjectDesktop> {
           const SizedBox(height: 20),
           GridView.builder(
               shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   childAspectRatio: 3 / 2,

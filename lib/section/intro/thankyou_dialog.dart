@@ -36,6 +36,7 @@ class ThankYouDialog extends StatelessWidget {
                     padding: EdgeInsets.only(top: 20.0, left: 12),
                     child: Text(
                       'Thanks for getting my resume!',
+                      textAlign: TextAlign.center,
                       style: TextStyle(fontSize: 22),
                     ),
                   ),
