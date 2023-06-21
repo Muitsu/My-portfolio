@@ -80,7 +80,7 @@ enum DownloadUrl {
   resume(
       name: '(RESUME) AHMAD MUIZZUDDIN SHAHREL',
       url:
-          'https://drive.google.com/uc?export=download&id=1oa9cT6G__ni0WkGcZcr9zF1fyc-Uji5V');
+          'https://drive.google.com/uc?export=download&id=1EyxlIEBWhzgmC5GsIvGW9bYp5rnYdOKo');
 
   final String name;
   final String url;
