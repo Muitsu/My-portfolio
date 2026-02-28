@@ -1,5 +1,6 @@
 class AssetsImg {
   static const String mySelf = 'assets/img/my_self.png';
+  static const String myFace = 'assets/img/my_face.png';
   static const String flutter = 'assets/img/flutter.png';
   static const String firebase = 'assets/img/firebase.png';
   static const String html = 'assets/img/html.png';

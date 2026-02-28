@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:my_portfolio/core/constant/assets_img.dart';
+import 'package:my_portfolio/core/responsive/responsive_flex.dart';
 import 'package:my_portfolio/core/widgets/gradient_button.dart';
 import 'package:my_portfolio/core/widgets/my_outline_button.dart';
 
@@ -72,47 +74,66 @@ class _HeroSectionState extends State<HeroSection>
             children: [
               _buildNavigation(),
               const Spacer(),
-              AnimatedBuilder(
-                animation: _titleAnimation,
-                builder: (context, child) {
-                  return Opacity(
-                    opacity: _titleAnimation.value,
-                    child: Transform.translate(
-                      offset: Offset(0, 50 * (1 - _titleAnimation.value)),
-                      child: child,
-                    ),
-                  );
-                },
-                child: const _GlitchText(
-                  text: 'Full Stack Engineer.',
-                  fontSize: 72,
-                ),
-              ),
-              const SizedBox(height: 24),
-              AnimatedBuilder(
-                animation: _subtitleAnimation,
-                builder: (context, child) {
-                  return Opacity(
-                    opacity: _subtitleAnimation.value,
-                    child: Transform.translate(
-                      offset: Offset(0, 30 * (1 - _subtitleAnimation.value)),
-                      child: child,
-                    ),
-                  );
-                },
-                child: SizedBox(
-                  width: 600,
-                  child: Text(
-                    'Building exceptional digital experiences with modern technologies. '
-                    'Specialized in React, Node.js, and Cloud Architecture.',
-                    style: TextStyle(
-                      color: Colors.grey[400],
-                      fontSize: 20,
-                      height: 1.6,
-                      letterSpacing: 0.5,
-                    ),
+              ResponsiveFlex(
+                isMobileReverse: true,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      AnimatedBuilder(
+                        animation: _titleAnimation,
+                        builder: (context, child) {
+                          return Opacity(
+                            opacity: _titleAnimation.value,
+                            child: Transform.translate(
+                              offset:
+                                  Offset(0, 50 * (1 - _titleAnimation.value)),
+                              child: child,
+                            ),
+                          );
+                        },
+                        child: const _GlitchText(
+                          text: 'Mobile Developer.',
+                          fontSize: 72,
+                        ),
+                      ),
+                      const SizedBox(height: 24),
+                      AnimatedBuilder(
+                        animation: _subtitleAnimation,
+                        builder: (context, child) {
+                          return Opacity(
+                            opacity: _subtitleAnimation.value,
+                            child: Transform.translate(
+                              offset: Offset(
+                                  0, 30 * (1 - _subtitleAnimation.value)),
+                              child: child,
+                            ),
+                          );
+                        },
+                        child: SizedBox(
+                          width: 600,
+                          child: Text(
+                            'Building exceptional digital experiences with modern technologies. '
+                            'Specialized in React, Node.js, and Cloud Architecture.',
+                            style: TextStyle(
+                              color: Colors.grey[400],
+                              fontSize: 20,
+                              height: 1.6,
+                              letterSpacing: 0.5,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ),
+                  Image.asset(
+                    AssetsImg.myFace,
+                    scale: 1.2,
+                  )
+                ],
               ),
               const SizedBox(height: 48),
               AnimatedBuilder(
