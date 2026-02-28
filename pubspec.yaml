@@ -40,6 +40,7 @@ dependencies:
   lottie: ^2.4.0
   latlong2: ^0.9.1
   flutter_map: ^8.2.2
+  provider: ^6.1.5+1
 
 dev_dependencies:
   flutter_test:

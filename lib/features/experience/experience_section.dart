@@ -69,8 +69,11 @@ class _ExperienceSectionState extends State<ExperienceSection>
         children: [
           if (isDesktop)
             Expanded(
-                child: MapWidget(
-              markers: [MapMarker(latitude: 3.1390, longitude: 101.6869)],
+                child: Padding(
+              padding: const EdgeInsets.only(right: 12),
+              child: MapWidget(
+                markers: [MapMarker(latitude: 3.1390, longitude: 101.6869)],
+              ),
             )),
           Expanded(
             child: Column(

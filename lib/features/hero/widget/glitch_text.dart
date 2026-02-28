@@ -37,7 +37,7 @@ class _GlitchTextState extends State<_GlitchText>
     return AnimatedBuilder(
       animation: _controller,
       builder: (context, child) {
-        final offset = _controller.value * 2;
+        final offset = _controller.value * 4;
         return Stack(
           children: [
             Text(

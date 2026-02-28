@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:my_portfolio/core/app_initializer.dart';
 import 'package:my_portfolio/features/portfolio_home.dart';
+import 'package:my_portfolio/providers/app_provider.dart';
+import 'package:provider/provider.dart';
 
-void main() {
-  runApp(const PortfolioApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await AppInitializer.init();
+  runApp(
+    MultiProvider(
+        providers: AppProviders.providers, child: const PortfolioApp()),
+  );
 }
 
 class PortfolioApp extends StatelessWidget {

@@ -6,6 +6,8 @@ import 'package:my_portfolio/features/education/education_section.dart';
 import 'package:my_portfolio/features/experience/experience_section.dart';
 import 'package:my_portfolio/features/hero/hero_section.dart';
 import 'package:my_portfolio/features/project/project_section.dart';
+import 'package:my_portfolio/providers/portfolio_provider.dart';
+import 'package:provider/provider.dart';
 
 class PortfolioHomePage extends StatefulWidget {
   const PortfolioHomePage({super.key});
@@ -16,18 +18,14 @@ class PortfolioHomePage extends StatefulWidget {
 
 class _PortfolioHomePageState extends State<PortfolioHomePage>
     with TickerProviderStateMixin {
-  final ScrollController _scrollController = ScrollController();
+  late PortfolioProvider provider;
   late AnimationController _fadeController;
   late Animation<double> _fadeAnimation;
-  bool _showFloatingAppBar = false;
 
-  final GlobalKey _aboutKey = GlobalKey();
-  final GlobalKey _experienceKey = GlobalKey();
-  final GlobalKey _projectsKey = GlobalKey();
-  final GlobalKey _contactKey = GlobalKey();
   @override
   void initState() {
     super.initState();
+    provider = context.read<PortfolioProvider>();
     _fadeController = AnimationController(
       duration: const Duration(milliseconds: 1000),
       vsync: this,
@@ -37,51 +35,39 @@ class _PortfolioHomePageState extends State<PortfolioHomePage>
       curve: Curves.easeOut,
     );
     _fadeController.forward();
-    _scrollController.addListener(() {
-      if (_scrollController.offset > 100 && !_showFloatingAppBar) {
-        setState(() => _showFloatingAppBar = true);
-      } else if (_scrollController.offset <= 100 && _showFloatingAppBar) {
-        setState(() => _showFloatingAppBar = false);
-      }
-    });
+    provider.initController();
   }
 
   @override
   void dispose() {
-    _scrollController.dispose();
+    provider.disposeController();
     _fadeController.dispose();
     super.dispose();
   }
 
-  void _scrollToSection(GlobalKey key) {
-    Scrollable.ensureVisible(
-      key.currentContext!,
-      duration: const Duration(milliseconds: 800),
-      curve: Curves.easeInOutCubic,
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
+    final showFloatingAppBar =
+        context.watch<PortfolioProvider>().showFloatingAppBar;
     return FadeTransition(
       opacity: _fadeAnimation,
       child: Scaffold(
         body: Stack(
           children: [
             SingleChildScrollView(
-              controller: _scrollController,
+              controller: provider.scrollController,
               child: Center(
                 child: ConstrainedBox(
                   constraints:
-                      const BoxConstraints(maxWidth: Breakpoints.desktop),
+                      const BoxConstraints(maxWidth: Breakpoints.desktop - 200),
                   child: Column(
                     children: [
                       const HeroSection(),
-                      AboutSection(key: _aboutKey),
-                      const EducationSection(),
-                      ExperienceSection(key: _experienceKey),
-                      ProjectsSection(key: _projectsKey),
-                      ContactSection(key: _contactKey),
+                      AboutSection(key: provider.aboutKey),
+                      EducationSection(key: provider.educationeKey),
+                      ExperienceSection(key: provider.experienceKey),
+                      ProjectsSection(key: provider.projectsKey),
+                      ContactSection(key: provider.contactKey),
                       _buildFooter(),
                     ],
                   ),
@@ -92,12 +78,14 @@ class _PortfolioHomePageState extends State<PortfolioHomePage>
             AnimatedPositioned(
               duration: const Duration(milliseconds: 400),
               curve: Curves.easeInOut,
-              top: _showFloatingAppBar ? 20 : -100, // Slide down from top
+              top: provider.showFloatingAppBar
+                  ? 20
+                  : -100, // Slide down from top
               left: 0,
               right: 0,
               child: AnimatedOpacity(
                 duration: const Duration(milliseconds: 400),
-                opacity: _showFloatingAppBar ? 1.0 : 0.0,
+                opacity: showFloatingAppBar ? 1.0 : 0.0,
                 child: Center(
                   child: _buildFloatingNav(),
                 ),
@@ -120,10 +108,11 @@ class _PortfolioHomePageState extends State<PortfolioHomePage>
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          _navItem("About", () => _scrollToSection(_aboutKey)),
-          _navItem("Experience", () => _scrollToSection(_experienceKey)),
-          _navItem("Projects", () => _scrollToSection(_projectsKey)),
-          _navItem("Contact", () => _scrollToSection(_contactKey)),
+          _navItem("About", provider.scrollToAbout),
+          _navItem("Education", provider.scrollToEducationeKey),
+          _navItem("Experience", provider.scrollToExperience),
+          _navItem("Projects", provider.scrollToProject),
+          _navItem("Contact", provider.scrollToContact),
         ],
       ),
     );

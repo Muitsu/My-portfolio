@@ -3,6 +3,8 @@ import 'package:my_portfolio/core/constant/assets_img.dart';
 import 'package:my_portfolio/core/responsive/responsive_flex.dart';
 import 'package:my_portfolio/core/widgets/gradient_button.dart';
 import 'package:my_portfolio/core/widgets/my_outline_button.dart';
+import 'package:my_portfolio/providers/portfolio_provider.dart';
+import 'package:provider/provider.dart';
 
 part 'widget/nav_item.dart';
 part 'widget/animated_scroll_indicator.dart';
@@ -95,6 +97,23 @@ class _HeroSectionState extends State<HeroSection>
                             ),
                           );
                         },
+                        child: const Text(
+                          'AHAMD MUIZZUDDIN',
+                          style: TextStyle(fontSize: 30),
+                        ),
+                      ),
+                      AnimatedBuilder(
+                        animation: _titleAnimation,
+                        builder: (context, child) {
+                          return Opacity(
+                            opacity: _titleAnimation.value,
+                            child: Transform.translate(
+                              offset:
+                                  Offset(0, 50 * (1 - _titleAnimation.value)),
+                              child: child,
+                            ),
+                          );
+                        },
                         child: const _GlitchText(
                           text: 'Mobile Developer.',
                           fontSize: 72,
@@ -116,8 +135,8 @@ class _HeroSectionState extends State<HeroSection>
                         child: SizedBox(
                           width: 600,
                           child: Text(
-                            'Building exceptional digital experiences with modern technologies. '
-                            'Specialized in React, Node.js, and Cloud Architecture.',
+                            'Building exceptional mobile experiences with modern technologies.'
+                            'Specialized in Flutter, clean architecture, and scalable app solutions.',
                             style: TextStyle(
                               color: Colors.grey[400],
                               fontSize: 20,
@@ -189,7 +208,7 @@ class _HeroSectionState extends State<HeroSection>
           ),
           child: const Center(
             child: Text(
-              'JD',
+              'AM',
               style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
@@ -200,7 +219,7 @@ class _HeroSectionState extends State<HeroSection>
         ),
         const SizedBox(width: 12),
         const Text(
-          'John Doe',
+          'Ahmad Muizzuddin',
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.w600,
@@ -212,10 +231,22 @@ class _HeroSectionState extends State<HeroSection>
   }
 
   Widget _buildNavLinks() {
-    final items = ['About', 'Education', 'Experience', 'Projects', 'Contact'];
+    final provider = context.read<PortfolioProvider>();
+    final items = {
+      'About': provider.scrollToAbout,
+      'Education': provider.scrollToEducationeKey,
+      'Experience': provider.scrollToExperience,
+      'Projects': provider.scrollToProject,
+      'Contact': provider.scrollToContact,
+    };
     return Row(
-      children: items.map((item) {
-        return _NavItem(title: item);
+      children: items.entries.map((entry) {
+        return GestureDetector(
+          onTap: entry.value,
+          child: _NavItem(
+            title: entry.key,
+          ),
+        );
       }).toList(),
     );
   }

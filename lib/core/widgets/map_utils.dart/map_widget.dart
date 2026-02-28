@@ -35,7 +35,7 @@ class MapWidget extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: borderRadius ?? BorderRadiusDirectional.circular(20),
       ),
-      height: height ?? size.height * 0.6,
+      height: height ?? size.height * 0.45,
       width: width,
       child: FlutterMap(
         options: MapOptions(
