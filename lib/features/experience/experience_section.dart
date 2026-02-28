@@ -12,7 +12,6 @@ class ExperienceSection extends StatefulWidget {
 class _ExperienceSectionState extends State<ExperienceSection>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-  bool _isVisible = false;
   int _hoveredIndex = -1;
 
   final List<Map<String, dynamic>> _experiences = [
@@ -49,6 +48,7 @@ class _ExperienceSectionState extends State<ExperienceSection>
       duration: const Duration(milliseconds: 1000),
       vsync: this,
     );
+    _controller.forward();
   }
 
   @override
@@ -57,18 +57,10 @@ class _ExperienceSectionState extends State<ExperienceSection>
     super.dispose();
   }
 
-  void _onVisibilityChanged(bool visible) {
-    if (visible && !_isVisible) {
-      setState(() => _isVisible = true);
-      _controller.forward();
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return SectionWrapper(
       title: 'Experience',
-      onVisibilityChanged: _onVisibilityChanged,
       child: Column(
         children: List.generate(_experiences.length, (index) {
           return AnimatedBuilder(

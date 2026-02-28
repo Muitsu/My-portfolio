@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/widgets/gradient_button.dart';
 import 'package:my_portfolio/core/widgets/my_outline_button.dart';
 
+part 'widget/nav_item.dart';
+part 'widget/animated_scroll_indicator.dart';
+part 'widget/glitch_text.dart';
+
 // ============ Hero Section ============
 class HeroSection extends StatefulWidget {
   const HeroSection({super.key});
@@ -231,99 +235,6 @@ class _HeroSectionState extends State<HeroSection>
   }
 }
 
-class _NavItem extends StatefulWidget {
-  final String title;
-
-  const _NavItem({required this.title});
-
-  @override
-  State<_NavItem> createState() => _NavItemState();
-}
-
-class _NavItemState extends State<_NavItem> {
-  bool _isHovered = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: MouseRegion(
-        onEnter: (_) => setState(() => _isHovered = true),
-        onExit: (_) => setState(() => _isHovered = false),
-        cursor: SystemMouseCursors.click,
-        child: Column(
-          children: [
-            Text(
-              widget.title,
-              style: TextStyle(
-                color: _isHovered ? const Color(0xFF00D9FF) : Colors.grey[400],
-                fontSize: 14,
-                letterSpacing: 1,
-              ),
-            ),
-            const SizedBox(height: 4),
-            AnimatedContainer(
-              duration: const Duration(milliseconds: 200),
-              width: _isHovered ? 20 : 0,
-              height: 2,
-              decoration: BoxDecoration(
-                color: const Color(0xFF00D9FF),
-                borderRadius: BorderRadius.circular(1),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _AnimatedScrollIndicator extends StatefulWidget {
-  const _AnimatedScrollIndicator();
-
-  @override
-  State<_AnimatedScrollIndicator> createState() =>
-      _AnimatedScrollIndicatorState();
-}
-
-class _AnimatedScrollIndicatorState extends State<_AnimatedScrollIndicator>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      duration: const Duration(milliseconds: 1500),
-      vsync: this,
-    )..repeat(reverse: true);
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: _controller,
-      builder: (context, child) {
-        return Transform.translate(
-          offset: Offset(0, 10 * _controller.value),
-          child: child,
-        );
-      },
-      child: const Icon(
-        Icons.keyboard_arrow_down,
-        color: Color(0xFF00D9FF),
-        size: 28,
-      ),
-    );
-  }
-}
-
 class GridPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
@@ -344,95 +255,4 @@ class GridPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
-}
-
-class _GlitchText extends StatefulWidget {
-  final String text;
-  final double fontSize;
-
-  const _GlitchText({
-    required this.text,
-    this.fontSize = 72,
-  });
-
-  @override
-  State<_GlitchText> createState() => _GlitchTextState();
-}
-
-class _GlitchTextState extends State<_GlitchText>
-    with SingleTickerProviderStateMixin {
-  late AnimationController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      duration: const Duration(milliseconds: 200),
-      vsync: this,
-    )..repeat(reverse: true);
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return AnimatedBuilder(
-      animation: _controller,
-      builder: (context, child) {
-        final offset = _controller.value * 2;
-        return Stack(
-          children: [
-            Text(
-              widget.text,
-              style: TextStyle(
-                fontSize: widget.fontSize,
-                fontWeight: FontWeight.bold,
-                foreground: Paint()
-                  ..style = PaintingStyle.fill
-                  ..color = const Color(0xFF00D9FF).withValues(alpha: 0.8),
-              ),
-            ),
-            Transform.translate(
-              offset: Offset(-offset, offset),
-              child: Text(
-                widget.text,
-                style: TextStyle(
-                  fontSize: widget.fontSize,
-                  fontWeight: FontWeight.bold,
-                  foreground: Paint()
-                    ..style = PaintingStyle.fill
-                    ..color = const Color(0xFFFF0080).withValues(alpha: 0.5),
-                ),
-              ),
-            ),
-            Transform.translate(
-              offset: Offset(offset, -offset),
-              child: Text(
-                widget.text,
-                style: TextStyle(
-                  fontSize: widget.fontSize,
-                  fontWeight: FontWeight.bold,
-                  foreground: Paint()
-                    ..style = PaintingStyle.fill
-                    ..color = const Color(0xFF00FF88).withValues(alpha: 0.5),
-                ),
-              ),
-            ),
-            Text(
-              widget.text,
-              style: TextStyle(
-                fontSize: widget.fontSize,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-            ),
-          ],
-        );
-      },
-    );
-  }
 }
