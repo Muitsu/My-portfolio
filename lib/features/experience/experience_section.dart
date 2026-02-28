@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/responsive/responsive.dart';
 import 'package:my_portfolio/core/widgets/map_utils.dart/map_widget.dart';
 import 'package:my_portfolio/core/widgets/section_wrapper.dart';
+import 'package:my_portfolio/features/experience/experience_model.dart';
 
 // ============ Experience Section ============
 class ExperienceSection extends StatefulWidget {
@@ -15,33 +16,6 @@ class _ExperienceSectionState extends State<ExperienceSection>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   int hoveredIndex = -1;
-
-  final List<Map<String, dynamic>> _experiences = [
-    {
-      'company': 'Vercel',
-      'role': 'Senior Software Engineer',
-      'period': '2022 - Present',
-      'description':
-          'Leading development of core platform features. Improved deployment pipeline efficiency by 40%.',
-      'tech': ['React', 'Next.js', 'Node.js', 'PostgreSQL'],
-    },
-    {
-      'company': 'Linear',
-      'role': 'Full Stack Engineer',
-      'period': '2020 - 2022',
-      'description':
-          'Built real-time collaboration features. Architected the sync engine for offline-first experience.',
-      'tech': ['TypeScript', 'React', 'GraphQL', 'Redis'],
-    },
-    {
-      'company': 'Stripe',
-      'role': 'Software Engineer',
-      'period': '2018 - 2020',
-      'description':
-          'Developed payment processing infrastructure. Handled millions of transactions daily.',
-      'tech': ['Ruby', 'Go', 'Kafka', 'MySQL'],
-    },
-  ];
 
   @override
   void initState() {
@@ -59,6 +33,29 @@ class _ExperienceSectionState extends State<ExperienceSection>
     super.dispose();
   }
 
+  List<ExperienceModel> get _experiences => [
+        ExperienceModel(
+          company: 'Laureate System Solutions SDN BHD',
+          role: 'Mobile Developer',
+          period: 'May 2024 - Present',
+          icon: Icons.grid_view_rounded,
+          points: [
+            'Contribute on Maintaining goverment- backed parking apps DBKL EZ KL Smart Park',
+            'Mentoring 2 junior Flutter developers, establishing scalable architecture',
+          ],
+        ),
+        ExperienceModel(
+          company: 'Heitech Padu Berhad',
+          role: 'Software Developer',
+          period: 'May 2021 - May 2024',
+          icon: Icons.grid_view_rounded,
+          points: [
+            'Develop 4 major public-sector applications, including Kulim Smart Parking and Park Smart Plus,',
+            'Developed custom Flutter/Native plugins for WoosimBluetooth printers',
+          ],
+        ),
+      ];
+
   @override
   Widget build(BuildContext context) {
     final isDesktop = Responsive.isDesktop(context);
@@ -68,13 +65,13 @@ class _ExperienceSectionState extends State<ExperienceSection>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           if (isDesktop)
-            Expanded(
-                child: Padding(
+            Padding(
               padding: const EdgeInsets.only(right: 12),
               child: MapWidget(
+                width: 400,
                 markers: [MapMarker(latitude: 3.1390, longitude: 101.6869)],
               ),
-            )),
+            ),
           Expanded(
             child: Column(
               children: List.generate(_experiences.length, (index) {
@@ -112,16 +109,12 @@ class _ExperienceSectionState extends State<ExperienceSection>
                         ),
                       ),
                       child: _buildExperienceItem(
-                        company: 'Linear',
-                        role: 'Product Engineer',
-                        period: '2020 — 2022',
-                        icon: Icons.grid_view_rounded,
-                        isLast: index == _experiences.length - 1,
-                        points: [
-                          'Built the real-time sync engine utilizing WebSockets and CRDTs.',
-                          'Designed and implemented the keyboard shortcut system.',
-                        ],
-                      ),
+                          company: _experiences[index].company,
+                          role: _experiences[index].role,
+                          period: _experiences[index].period,
+                          icon: _experiences[index].icon,
+                          isLast: index == _experiences.length - 1,
+                          points: _experiences[index].points),
                     ),
                   ),
                 );
@@ -175,15 +168,21 @@ class _ExperienceSectionState extends State<ExperienceSection>
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text(
-                      company,
-                      style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold),
+                    Expanded(
+                      child: Text(
+                        company,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold),
+                      ),
                     ),
                     Text(
                       period,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                       style: const TextStyle(color: Colors.grey, fontSize: 14),
                     ),
                   ],

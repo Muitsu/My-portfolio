@@ -63,9 +63,9 @@ class _AboutSectionState extends State<AboutSection>
                   ),
                   const SizedBox(height: 24),
                   Text(
-                    'With over 6 years of experience in full-stack development, '
-                    'I believe in writing clean, maintainable code that solves real problems. '
-                    'My approach combines technical expertise with a deep understanding of user needs.',
+                    'With over ${DateTime.now().year - 2021}+ years of experience in software development,'
+                    'I focus on building reliable and scalable, applications that deliver real value to users.'
+                    'I believe in clean architecture, maintainable code, and creating solutions that balance technical excellence with practical user needs.',
                     style: TextStyle(
                       color: Colors.grey[500],
                       fontSize: 16,
@@ -74,9 +74,9 @@ class _AboutSectionState extends State<AboutSection>
                   ),
                   const SizedBox(height: 24),
                   Text(
-                    'I specialize in building scalable web applications, from concept to deployment. '
-                    'My expertise spans across modern JavaScript frameworks, backend architectures, '
-                    'and cloud infrastructure.',
+                    'I specialize in developing high-performance mobile applications using Flutter, supported by robust'
+                    'backend systems and cloud infrastructure. My experience spans the full development lifecycle — from '
+                    'architecture design and implementation to deployment and continuous improvement.',
                     style: TextStyle(
                       color: Colors.grey[500],
                       fontSize: 16,
@@ -98,14 +98,14 @@ class _AboutSectionState extends State<AboutSection>
 
   Widget _buildSkillsGrid() {
     final skills = [
-      ('React', 0.95),
-      ('Node.js', 0.90),
-      ('TypeScript', 0.92),
-      ('Python', 0.85),
-      ('AWS', 0.88),
-      ('Docker', 0.82),
+      ('Flutter', 0.97),
+      ('Dart', 0.95),
+      ('Mobile App Architecture', 0.92),
+      ('3rd Party SDK Integration', 0.80),
+      ('Firebase / Cloud Services', 0.88),
+      ('Android Native (Java)', 0.80),
+      ('Spring Boot', 0.40),
     ];
-
     return Column(
       children: skills.map((skill) {
         return Padding(

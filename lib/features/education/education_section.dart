@@ -52,20 +52,20 @@ class _EducationSectionState extends State<EducationSection>
     return Column(
       children: [
         _TimelineItem(
-          title: 'University of Waterloo',
+          title: 'University Teknologi MARA (UiTM)',
           subtitle: 'Bachelor of Computer Science',
-          period: '2015 - 2018',
+          period: '2017 - 2021',
           description:
-              'Specialized in Software Engineering with focus on distributed systems and machine learning.',
+              'Developed a Smart Attendance System using OpenCV and FaceNet (Computer Vision).',
           animation: _controller,
         ),
         const SizedBox(height: 40),
         _TimelineItem(
-          title: 'Online Certifications',
-          subtitle: 'AWS Solutions Architect, Google Cloud',
-          period: '2019 - 2023',
+          title: 'Selangor Matriculation College',
+          subtitle: 'Foundation in Accounting',
+          period: '2016 - 2017',
           description:
-              'Continuous learning through professional certifications in cloud architecture and DevOps.',
+              'Learning through professional certifications in Accounting',
           animation: _controller,
         ),
       ],
