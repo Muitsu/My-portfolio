@@ -4,7 +4,7 @@ import 'package:my_portfolio/section/copyrights/copyrights_main.dart';
 import 'package:my_portfolio/section/experience/experience_main.dart';
 import 'package:my_portfolio/section/intro/intro_main.dart';
 import 'package:my_portfolio/section/project/project_main.dart';
-import 'constant/assets_color.dart';
+import 'core/constant/assets_color.dart';
 
 void main() {
   runApp(const MyApp());

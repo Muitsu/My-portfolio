@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:my_portfolio/widget/html_service.dart';
 import 'package:my_portfolio/widget/platform_image.dart';
 
-import '../../../constant/assets_color.dart';
-import '../../../constant/portfolio_constants.dart';
+import '../../../core/constant/assets_color.dart';
+import '../../../core/constant/portfolio_constants.dart';
 import '../../../widget/mini_title.dart';
 import '../../../widget/text_title.dart';
 import '../project_btn.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-import '../../constant/portfolio_constants.dart';
+import '../../core/constant/portfolio_constants.dart';
 
 class ThankYouDialog extends StatelessWidget {
   const ThankYouDialog({
@@ -11,8 +11,8 @@ class ThankYouDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return WillPopScope(
-      onWillPop: () async => true,
+    return PopScope(
+      onPopInvokedWithResult: (result, a) => false,
       child: GestureDetector(
         onTap: () => Navigator.pop(context),
         child: Material(

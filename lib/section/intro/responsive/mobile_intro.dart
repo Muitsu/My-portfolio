@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../constant/assets_color.dart';
-import '../../../constant/assets_img.dart';
-import '../../../constant/portfolio_constants.dart';
+import '../../../core/constant/assets_color.dart';
+import '../../../core/constant/assets_img.dart';
+import '../../../core/constant/portfolio_constants.dart';
 import '../../../widget/html_service.dart';
 import '../../../widget/platform_image.dart';
 import '../../../widget/text_title.dart';

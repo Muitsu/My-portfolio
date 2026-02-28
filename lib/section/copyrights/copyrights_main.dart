@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/widget/responsive.dart';
 
-import '../../constant/assets_color.dart';
-import '../../constant/portfolio_constants.dart';
+import '../../core/constant/assets_color.dart';
+import '../../core/constant/portfolio_constants.dart';
 
 class MyCopytights extends StatelessWidget {
   const MyCopytights({super.key});

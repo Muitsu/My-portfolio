@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../constant/portfolio_constants.dart';
+import '../../core/constant/portfolio_constants.dart';
 
 class ExperiencePopUp extends StatelessWidget {
   final String companyName;

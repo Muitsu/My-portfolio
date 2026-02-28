@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-import '../../../constant/portfolio_constants.dart';
+import '../../../core/constant/portfolio_constants.dart';
 import '../../../widget/mini_title.dart';
 import '../../../widget/text_title.dart';
 import '../experience_list.dart';

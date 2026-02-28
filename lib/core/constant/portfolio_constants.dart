@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_portfolio/constant/assets_img.dart';
+import 'package:my_portfolio/core/constant/assets_img.dart';
 
 const double desktopHorizontalPadding = 180;
 const double tabletHorizontalPadding = 120;
