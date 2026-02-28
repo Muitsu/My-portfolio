@@ -1,7 +1,7 @@
 part of '../project_section.dart';
 
 class _ProjectCard extends StatelessWidget {
-  final Map<String, dynamic> project;
+  final ProjectModel project;
   final bool isHovered;
 
   const _ProjectCard({
@@ -40,7 +40,7 @@ class _ProjectCard extends StatelessWidget {
                     ),
                   ),
                   child: Image.network(
-                    project['image'],
+                    project.image,
                     fit: BoxFit.cover,
                     errorBuilder: (_, __, ___) => Container(
                       color: const Color(0xFF222222),
@@ -74,7 +74,7 @@ class _ProjectCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        project['title'],
+                        project.title,
                         style: const TextStyle(
                           color: Colors.white,
                           fontSize: 18,
@@ -90,7 +90,7 @@ class _ProjectCard extends StatelessWidget {
                           ),
                           const SizedBox(width: 4),
                           Text(
-                            '${project['stars']}',
+                            '${project.stars}',
                             style: TextStyle(
                               color: Colors.grey[400],
                               fontSize: 12,
@@ -102,7 +102,7 @@ class _ProjectCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   Text(
-                    project['description'],
+                    project.description,
                     style: TextStyle(
                       color: Colors.grey[500],
                       fontSize: 13,
@@ -114,7 +114,7 @@ class _ProjectCard extends StatelessWidget {
                   const Spacer(),
                   Wrap(
                     spacing: 6,
-                    children: (project['tags'] as List).map((tag) {
+                    children: project.tags.map((tag) {
                       return Container(
                         padding: const EdgeInsets.symmetric(
                           horizontal: 8,

@@ -24,10 +24,11 @@ class _HeroSectionState extends State<HeroSection>
   late Animation<double> _titleAnimation;
   late Animation<double> _subtitleAnimation;
   late Animation<double> _buttonAnimation;
-
+  late PortfolioProvider provider;
   @override
   void initState() {
     super.initState();
+    provider = context.read<PortfolioProvider>();
     _controller = AnimationController(
       duration: const Duration(milliseconds: 1500),
       vsync: this,
@@ -97,9 +98,9 @@ class _HeroSectionState extends State<HeroSection>
                             ),
                           );
                         },
-                        child: const Text(
-                          'AHAMD MUIZZUDDIN',
-                          style: TextStyle(fontSize: 30),
+                        child: Text(
+                          provider.name.toUpperCase(),
+                          style: const TextStyle(fontSize: 30),
                         ),
                       ),
                       AnimatedBuilder(
@@ -114,8 +115,8 @@ class _HeroSectionState extends State<HeroSection>
                             ),
                           );
                         },
-                        child: const _GlitchText(
-                          text: 'Mobile Developer.',
+                        child: _GlitchText(
+                          text: provider.role,
                           fontSize: 72,
                         ),
                       ),
@@ -135,8 +136,7 @@ class _HeroSectionState extends State<HeroSection>
                         child: SizedBox(
                           width: 600,
                           child: Text(
-                            'Building exceptional mobile experiences with modern technologies.'
-                            'Specialized in Flutter, clean architecture, and scalable app solutions.',
+                            provider.heroDesc,
                             style: TextStyle(
                               color: Colors.grey[400],
                               fontSize: 20,

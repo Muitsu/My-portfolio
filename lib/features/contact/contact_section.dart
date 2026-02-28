@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/widgets/gradient_button.dart';
 import 'package:my_portfolio/core/widgets/section_wrapper.dart';
+import 'package:my_portfolio/providers/portfolio_provider.dart';
+import 'package:provider/provider.dart';
 
 part 'widget/contact_info_row.dart';
 
@@ -70,25 +72,26 @@ class _ContactSectionState extends State<ContactSection> {
   }
 
   Widget _buildContactInfo() {
-    return const Column(
+    final provider = context.read<PortfolioProvider>();
+    return Column(
       children: [
         _ContactInfoRow(
           icon: Icons.email_outlined,
           label: 'Email',
-          value: 'hello@johndoe.dev',
+          value: provider.email,
         ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         _ContactInfoRow(
           icon: Icons.location_on_outlined,
           label: 'Location',
-          value: 'San Francisco, CA',
+          value: provider.location,
         ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         _ContactInfoRow(
           icon: Icons.work_outline,
           label: 'Status',
-          value: 'Available for work',
-          valueColor: Color(0xFF00FF88),
+          value: provider.status,
+          valueColor: const Color(0xFF00FF88),
         ),
       ],
     );

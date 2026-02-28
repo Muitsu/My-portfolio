@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/widgets/section_wrapper.dart';
+import 'package:my_portfolio/providers/portfolio_provider.dart';
+import 'package:provider/provider.dart';
 
 part 'widget/skill_bar.dart';
 
@@ -13,10 +15,11 @@ class AboutSection extends StatefulWidget {
 class _AboutSectionState extends State<AboutSection>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-
+  late PortfolioProvider provider;
   @override
   void initState() {
     super.initState();
+    provider = context.read<PortfolioProvider>();
     _controller = AnimationController(
       duration: const Duration(milliseconds: 800),
       vsync: this,
@@ -63,9 +66,7 @@ class _AboutSectionState extends State<AboutSection>
                   ),
                   const SizedBox(height: 24),
                   Text(
-                    'With over ${DateTime.now().year - 2021}+ years of experience in software development,'
-                    'I focus on building reliable and scalable, applications that deliver real value to users.'
-                    'I believe in clean architecture, maintainable code, and creating solutions that balance technical excellence with practical user needs.',
+                    provider.about1,
                     style: TextStyle(
                       color: Colors.grey[500],
                       fontSize: 16,
@@ -74,9 +75,7 @@ class _AboutSectionState extends State<AboutSection>
                   ),
                   const SizedBox(height: 24),
                   Text(
-                    'I specialize in developing high-performance mobile applications using Flutter, supported by robust'
-                    'backend systems and cloud infrastructure. My experience spans the full development lifecycle — from '
-                    'architecture design and implementation to deployment and continuous improvement.',
+                    provider.about2,
                     style: TextStyle(
                       color: Colors.grey[500],
                       fontSize: 16,
@@ -97,15 +96,7 @@ class _AboutSectionState extends State<AboutSection>
   }
 
   Widget _buildSkillsGrid() {
-    final skills = [
-      ('Flutter', 0.97),
-      ('Dart', 0.95),
-      ('Mobile App Architecture', 0.92),
-      ('3rd Party SDK Integration', 0.80),
-      ('Firebase / Cloud Services', 0.88),
-      ('Android Native (Java)', 0.80),
-      ('Spring Boot', 0.40),
-    ];
+    final skills = provider.skills;
     return Column(
       children: skills.map((skill) {
         return Padding(

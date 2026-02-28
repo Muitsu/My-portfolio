@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/responsive/responsive.dart';
 import 'package:my_portfolio/core/widgets/map_utils.dart/map_widget.dart';
 import 'package:my_portfolio/core/widgets/section_wrapper.dart';
-import 'package:my_portfolio/features/experience/experience_model.dart';
+import 'package:my_portfolio/providers/portfolio_provider.dart';
+import 'package:provider/provider.dart';
 
 // ============ Experience Section ============
 class ExperienceSection extends StatefulWidget {
@@ -33,32 +34,10 @@ class _ExperienceSectionState extends State<ExperienceSection>
     super.dispose();
   }
 
-  List<ExperienceModel> get _experiences => [
-        ExperienceModel(
-          company: 'Laureate System Solutions SDN BHD',
-          role: 'Mobile Developer',
-          period: 'May 2024 - Present',
-          icon: Icons.grid_view_rounded,
-          points: [
-            'Contribute on Maintaining goverment- backed parking apps DBKL EZ KL Smart Park',
-            'Mentoring 2 junior Flutter developers, establishing scalable architecture',
-          ],
-        ),
-        ExperienceModel(
-          company: 'Heitech Padu Berhad',
-          role: 'Software Developer',
-          period: 'May 2021 - May 2024',
-          icon: Icons.grid_view_rounded,
-          points: [
-            'Develop 4 major public-sector applications, including Kulim Smart Parking and Park Smart Plus,',
-            'Developed custom Flutter/Native plugins for WoosimBluetooth printers',
-          ],
-        ),
-      ];
-
   @override
   Widget build(BuildContext context) {
     final isDesktop = Responsive.isDesktop(context);
+    final experiences = context.read<PortfolioProvider>().experiences;
     return SectionWrapper(
       title: 'Experience',
       child: Row(
@@ -74,7 +53,7 @@ class _ExperienceSectionState extends State<ExperienceSection>
             ),
           Expanded(
             child: Column(
-              children: List.generate(_experiences.length, (index) {
+              children: List.generate(experiences.length, (index) {
                 return AnimatedBuilder(
                   animation: _controller,
                   builder: (context, child) {
@@ -109,12 +88,12 @@ class _ExperienceSectionState extends State<ExperienceSection>
                         ),
                       ),
                       child: _buildExperienceItem(
-                          company: _experiences[index].company,
-                          role: _experiences[index].role,
-                          period: _experiences[index].period,
-                          icon: _experiences[index].icon,
-                          isLast: index == _experiences.length - 1,
-                          points: _experiences[index].points),
+                          company: experiences[index].company,
+                          role: experiences[index].role,
+                          period: experiences[index].period,
+                          icon: experiences[index].icon,
+                          isLast: index == experiences.length - 1,
+                          points: experiences[index].points),
                     ),
                   ),
                 );

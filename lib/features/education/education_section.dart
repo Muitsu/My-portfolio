@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_portfolio/core/widgets/section_wrapper.dart';
+import 'package:my_portfolio/providers/portfolio_provider.dart';
+import 'package:provider/provider.dart';
 
 part 'widget/timeline_item.dart';
 
@@ -14,10 +16,11 @@ class EducationSection extends StatefulWidget {
 class _EducationSectionState extends State<EducationSection>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
-
+  late PortfolioProvider provider;
   @override
   void initState() {
     super.initState();
+    provider = context.read<PortfolioProvider>();
     _controller = AnimationController(
       duration: const Duration(milliseconds: 800),
       vsync: this,
@@ -49,26 +52,19 @@ class _EducationSectionState extends State<EducationSection>
   }
 
   Widget _buildTimeline() {
-    return Column(
-      children: [
-        _TimelineItem(
-          title: 'University Teknologi MARA (UiTM)',
-          subtitle: 'Bachelor of Computer Science',
-          period: '2017 - 2021',
-          description:
-              'Developed a Smart Attendance System using OpenCV and FaceNet (Computer Vision).',
-          animation: _controller,
-        ),
-        const SizedBox(height: 40),
-        _TimelineItem(
-          title: 'Selangor Matriculation College',
-          subtitle: 'Foundation in Accounting',
-          period: '2016 - 2017',
-          description:
-              'Learning through professional certifications in Accounting',
-          animation: _controller,
-        ),
-      ],
-    );
+    final edu = provider.educations;
+    return ListView.separated(
+        itemCount: edu.length,
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        itemBuilder: (_, index) => _TimelineItem(
+            title: edu[index].title,
+            subtitle: edu[index].subtitle,
+            period: edu[index].period,
+            description: edu[index].description,
+            animation: _controller),
+        separatorBuilder: (_, ind) => const SizedBox(
+              height: 40,
+            ));
   }
 }
